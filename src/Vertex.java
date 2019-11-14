@@ -8,12 +8,17 @@ import java.util.ArrayList;
  * Class: 333 | Project 7 | 11/18/2019
  */
 public class Vertex {
-	
+	enum Stage 
+	{ 
+	    WHITE, GREY, BLACK; 
+	}
 	private ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
-	private int label, stage = 0;
+	private int label;
+	private Stage stage;
 	
 	public Vertex(int l) {
 		label = l;
+		stage = Stage.WHITE;
 	}
 	
 	/**
@@ -37,17 +42,25 @@ public class Vertex {
 	
 	/**
 	 * Adds one to the stage counter of the Vertex. This records whether the Vertex has been visited
-	 * before (grey, 1) or if it has been searched (black, 2). Should be advanced on both visit and search.
+	 * before GREY or if it has been searched BLACK. Should be advanced on both visit and search.
 	 */
 	public void advanceStage() {
-		stage++;
+		switch (stage) {
+			case WHITE:
+				stage = Stage.GREY;
+				break;
+			case GREY:
+				stage = Stage.BLACK;
+			default:
+				break;
+		}
 	}
 	
 	/**
 	 * Resets the stage counter to unvisited so that the graph may have repeat searches.
 	 */
 	public void resetStage() {
-		stage = 0;
+		stage = Stage.WHITE;
 	}
 	
 	/**
@@ -58,9 +71,9 @@ public class Vertex {
 	}
 	
 	/**
-	 * @return stage count, 0 is unvisited, 1 is visited, and 2 is searched.
+	 * @return stage as WHITE, GREY, BLACK
 	 */
-	public int getStage() {
+	public Stage getStage() {
 		return stage;
 	}
 }
