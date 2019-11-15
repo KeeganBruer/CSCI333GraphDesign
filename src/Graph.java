@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Graph implements GraphInterface {
 	
 	ArrayList<Vertex> vertices = new ArrayList<Vertex>();
-	
+	Queue<Vertex> bfsQueue = new LinkedList<>();
+
 	public Graph() {
 		//
 	}
