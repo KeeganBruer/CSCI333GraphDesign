@@ -20,6 +20,7 @@ public class Vertex {
 	public Vertex(int l) {
 		label = l;
 		stage = Stage.WHITE;
+		distance = 0;
 	}
 	
 	/**
@@ -76,5 +77,13 @@ public class Vertex {
 	 */
 	public Stage getStage() {
 		return stage;
+	}
+	
+	public void setDistance(int newDist) {
+		distance = newDist;	
+	}
+	
+	public int getDistance() {
+		return distance;	
 	}
 }
