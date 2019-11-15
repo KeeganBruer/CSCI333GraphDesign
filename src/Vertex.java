@@ -15,7 +15,8 @@ public class Vertex {
 	private ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
 	private int label;
 	private Stage stage;
-	
+	private int distance;
+
 	public Vertex(int l) {
 		label = l;
 		stage = Stage.WHITE;
