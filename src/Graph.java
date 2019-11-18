@@ -20,33 +20,31 @@ public class Graph implements GraphInterface {
 
 	@Override
 	public void BFS(int startingNode) {
-		/*
-		Vertex v = null;
-		for each vertex u in G except for s
-		   u.color = WHITE
-		   u.d =  // infinite distance, for now. replaced later with a real distance
-		   u.p = NULL
-		s.color = GRAY
-		s.d = 0 // s is distance 0 from itself
-		s.p = NULL // s is the root of the breadth-first tree
-		let Q be a new and empty queue
-		ENQUEUE(Q, s) // put vertex s into the queue: the first vertex to be visited
-		while Q is not empty
-		   u = DEQUEUE(Q) // remove a vertex u to visit, from Q
-		   u.color = BLACK
-		   for each vertex v adjacent to u
-		      if v.color == WHITE // gray or black neighbors are left alone
-		         v.color = GRAY
-		         v.d = u.d + 1 // v (the child of u) is 1 farther from s than u
-		         v.p = u // v is added to the breadth-first tree as a child of u
-		         ENQUEUE(Q, v) // put v in the queue of vertices to visit later
-	
-		 */
-		Vertex v = null;
+		Vertex s = null;
 		for (Vertex u : vertices) {
-			u.setStage(Stage.WHITE);
-			u.setDistance(Integer.MAX_VALUE);
-			u.set
+			if (u.getLabel() != startingNode) {
+				u.setStage(Stage.WHITE);
+				u.setDistance(Integer.MAX_VALUE);
+				u.setParent(null);
+			}else {
+				s = u;
+			}
+		}
+		s.setStage(Stage.GREY);
+		s.setDistance(0);
+		s.setParent(null);
+		bfsQueue.add(s);
+		while (!bfsQueue.isEmpty()) {
+			Vertex u = bfsQueue.remove();
+			u.setStage(Stage.BLACK);
+			for (Vertex v : u.getNeighbors()) {
+				if (v.getStage() == Stage.WHITE) {
+					v.setStage(Stage.GREY);
+					v.setDistance(u.getDistance() + 1);
+					v.setParent(u);
+					bfsQueue.add(v);
+				}
+			}
 		}
 	}
 	
@@ -112,6 +110,23 @@ public class Graph implements GraphInterface {
 			System.out.println("");
 		}
 		
+	}
+	
+	public void printShortestPath(int s, int v) {
+		System.out.print("Shortest Path from " + s + " to " + v + ": ");
+		printShortestPathHelper(s, v);
+	}
+	private void printShortestPathHelper(int s, int v) {
+		Vertex sV = getVertex(s);
+		Vertex vV = getVertex(v);
+		if (sV.getLabel() == vV.getLabel()) {
+			System.out.print(sV.getLabel()+ " ");
+		} else if (vV.getParent() == null) {
+			System.out.println("No Path Exists");
+		} else {
+			printShortestPathHelper(s, vV.getParent().getLabel());
+			System.out.print(vV.getLabel() + " ");
+		}
 	}
 	
 	private Vertex getVertex(int vertex) {

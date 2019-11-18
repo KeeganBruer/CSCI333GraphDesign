@@ -85,6 +85,14 @@ public class Vertex {
 	public int getDistance() {
 		return distance;	
 	}
+	
+	public void setParent(Vertex p) {
+		this.parent = p;
+	}
+	
+	public Vertex getParent() {
+		return this.parent;
+	}
 }
 
 enum Stage 
