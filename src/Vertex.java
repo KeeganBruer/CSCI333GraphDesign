@@ -8,14 +8,11 @@ import java.util.ArrayList;
  * Class: 333 | Project 7 | 11/18/2019
  */
 public class Vertex {
-	enum Stage 
-	{ 
-	    WHITE, GREY, BLACK; 
-	}
 	private ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
+	private Vertex parent;
 	private int label;
 	private Stage stage;
-	private int distance;
+	private int distance, dTime, fTime;
 
 	public Vertex(int l) {
 		label = l;
@@ -30,6 +27,16 @@ public class Vertex {
 	 * @return true if able to be added, false if already exists 
 	 */
 	public boolean addNeighbor(Vertex n) {
+		neighbors.add(n);
+		return true;
+	}
+	
+	public boolean removeNeighbor(int vertex) {
+		for (int i = 0; i < neighbors.size(); i++) {
+			if (neighbors.get(i).getLabel()==vertex) {
+				neighbors.remove(i);
+			}
+		}
 		return true;
 	}
 	
@@ -46,16 +53,8 @@ public class Vertex {
 	 * Adds one to the stage counter of the Vertex. This records whether the Vertex has been visited
 	 * before GREY or if it has been searched BLACK. Should be advanced on both visit and search.
 	 */
-	public void advanceStage() {
-		switch (stage) {
-			case WHITE:
-				stage = Stage.GREY;
-				break;
-			case GREY:
-				stage = Stage.BLACK;
-			default:
-				break;
-		}
+	public void setStage(Stage c) {
+		this.stage = c;
 	}
 	
 	/**
@@ -86,4 +85,9 @@ public class Vertex {
 	public int getDistance() {
 		return distance;	
 	}
+}
+
+enum Stage 
+{ 
+    WHITE, GREY, BLACK; 
 }

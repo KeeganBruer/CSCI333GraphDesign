@@ -12,11 +12,27 @@ public interface GraphInterface {
 	 */
 	void BFS(int startingNode);
 	/**
+	 * Performs a deapth-first search starting at the node specified, printing nodes as they're visited.
+	 * @param startingNode
+	 */
+	void DFS(int startingNode);
+	/**
+	 * Performs a Prim's search starting at the node specified, printing nodes as they're visited.
+	 * @param startingNode
+	 */
+	void MST(int startingNode);
+	/**
 	 * Inserts vertex with specified int value as a label
 	 * @param vertex int label
 	 * @return true if inserted, false if already exists
 	 */
 	boolean insertVertex(int vertex);
+	/**
+	 * Inserts vertex with specified int value as a label
+	 * @param vertex int label
+	 * @return true if inserted, false if already exists
+	 */
+	boolean deleteVertex(int vertex);
 	/**
 	 * Inserts edge from start vertex to end vertex by adding the end as a neighbor to start but NOT adding start as a neighbor to end.
 	 * @param start int label of vertex to begin the edge
