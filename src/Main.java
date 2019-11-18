@@ -16,7 +16,7 @@ public class Main {
 		graph.insertUndirectedEdge(4, 5);
 		graph.insertUndirectedEdge(1, 5);
 		graph.printGraphArray();
-		graph.BFS(0);
-		graph.printShortestPath(0, 5);
+		graph.DFS(0);
+		graph.printPath(0, 5);
 	}
 }

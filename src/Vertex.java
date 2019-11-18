@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 /**
  * Vertex that acts as a single vertex in a graph.
  * Vertex class works with both directional and non-directional graphs with a slight tweak.
@@ -7,10 +8,10 @@ import java.util.ArrayList;
  * 
  * Class: 333 | Project 7 | 11/18/2019
  */
-public class Vertex {
+public class Vertex implements Comparator<Vertex>{
 	private ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
 	private Vertex parent;
-	private int label;
+	private int label, key;
 	private Stage stage;
 	private int distance, dTime, fTime;
 
@@ -92,6 +93,33 @@ public class Vertex {
 	
 	public Vertex getParent() {
 		return this.parent;
+	}
+	
+	public void setDTime(int d) {
+		this.dTime = d;
+	}
+	
+	public int getDTime() {
+		return this.dTime;
+	}
+	
+	public void setFTime(int f) {
+		this.fTime = f;
+	}
+	
+	public int getFTime() {
+		return this.fTime;
+	}
+	
+	public void setKey(int key) {
+		this.key = key;
+	}
+	
+	public int getKey() {
+		return this.key;
+	}
+	public int compare(Vertex s1, Vertex s2) {
+		return 0;
 	}
 }
 
