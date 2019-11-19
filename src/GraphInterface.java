@@ -57,7 +57,7 @@ public interface GraphInterface {
 	 * @param weight int weight of edge
 	 * @return true if successfully inserted, false if missing vertices or if an edge already exists between the two vertices?
 	 */
-	boolean insertUndirectedWeightedEdge(int start, int end, int weight);
+	boolean insertUndirectedWeightedEdge(int vertex1, int vertex2, int weight);
 	/**
 	 * Inserts edge from start vertex to end vertex by adding the vertex1 as a neighbor to vertex2 AND adding vertex2 as a neighbor to vertex1.
 	 * @param vertex1 int label of the first vertex

@@ -7,7 +7,8 @@ import java.util.ArrayList;
  */
 
 public class Graph implements GraphInterface {
-
+	ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+	ArrayList<Edge> edges = new ArrayList<Edge>();
 	@Override
 	public void BFS(int startingNode) {
 		// TODO Auto-generated method stub
@@ -51,15 +52,13 @@ public class Graph implements GraphInterface {
 	}
 
 	@Override
-	public boolean insertUndirectedWeightedEdge(int start, int end, int weight) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean insertUndirectedWeightedEdge(int vertex1, int vertex2, int weight) {
+		return insertDirectedWeightedEdge(vertex1, vertex2, weight) && insertDirectedWeightedEdge(vertex2, vertex1, weight);
 	}
 
 	@Override
 	public boolean insertUndirectedEdge(int vertex1, int vertex2) {
-		// TODO Auto-generated method stub
-		return false;
+		return insertDirectedEdge(vertex1, vertex2) && insertDirectedEdge(vertex2, vertex1);
 	}
 
 	@Override
