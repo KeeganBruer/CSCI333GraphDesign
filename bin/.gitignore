@@ -1,6 +1,7 @@
 /Graph.class
 /GraphInterface.class
-/Vertex$Stage.class
-/Vertex.class
 /Main.class
 /Stage.class
+/Vertex.class
+/Edge.class
+/VertexComparitor.class

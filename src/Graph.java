@@ -13,6 +13,7 @@ import java.util.Queue;
 public class Graph implements GraphInterface {
 	
 	ArrayList<Vertex> vertices = new ArrayList<Vertex>();
+	ArrayList<Edge> edges = new ArrayList<Edge>();
 	int time = 0;
 
 	public Graph() {
@@ -83,14 +84,14 @@ public class Graph implements GraphInterface {
 	public void MST(int startingNode) {
 		Vertex r = getVertex(startingNode);
 		for (Vertex u : vertices) {
-			u.setKey(Integer.MAX_VALUE);
+			u.setKey(100);
 			u.setParent(null);
 		}
-		PriorityQueue<Vertex> pQueue = new PriorityQueue<Vertex>(vertices);
 		while (!pQueue.isEmpty()) {
 			Vertex u = pQueue.poll();
+			System.out.println("sort: " + u.getKey());
 			for (Vertex v : u.getNeighbors()) {
-				int weightUtoV = 0;
+				int weightUtoV = getEdge(u, v).getWeight();
 				if (pQueue.contains(v) && weightUtoV < v.getKey()) {
 					v.setParent(u);
 					v.setKey(weightUtoV);
@@ -134,10 +135,32 @@ public class Graph implements GraphInterface {
 		startV.addNeighbor(endV);
 		return true;
 	}
+	@Override
+	public boolean insertDirectedWeightedEdge(int start, int end, int weight) {
+		Vertex endV = null;
+		Vertex startV = null;
+		for (int i = 0; i < vertices.size(); i++) { //could also use getVertex method but this uses one loop instead of two
+			if (vertices.get(i).getLabel() == end) {
+				endV = vertices.get(i);
+			}
+			if (vertices.get(i).getLabel() == start) {
+				startV = vertices.get(i);
+			}
+		}
+		startV.addNeighbor(endV);
+		Edge edge = new Edge(startV, endV, weight);
+		edges.add(edge);
+		return true;
+	}
 
 	@Override
 	public boolean insertUndirectedEdge(int vertex1, int vertex2) {
 		return insertDirectedEdge(vertex1, vertex2) && insertDirectedEdge(vertex2, vertex1);
+	}
+	
+	@Override
+	public boolean insertUndirectedWeightedEdge(int vertex1, int vertex2, int weight) {
+		return insertDirectedWeightedEdge(vertex1, vertex2, weight) && insertDirectedWeightedEdge(vertex2, vertex1, weight);
 	}
 
 	@Override
@@ -146,7 +169,11 @@ public class Graph implements GraphInterface {
 			Vertex v = vertices.get(i);
 			System.out.print(v.getLabel() + " ");
 			for (int n = 0; n < v.getNeighbors().size(); n++) {
-				System.out.print(v.getNeighbors().get(n).getLabel() + " ");
+				Edge e = getEdge(v, v.getNeighbors().get(n));
+				for (int g = 0; g < e.getWeight(); g++) {
+					System.out.print(" ");
+				}
+				System.out.print(v.getNeighbors().get(n).getLabel());
 			}
 			System.out.println("");
 		}
@@ -160,10 +187,11 @@ public class Graph implements GraphInterface {
 	private void printPathHelper(int s, int v) {
 		Vertex sV = getVertex(s);
 		Vertex vV = getVertex(v);
+		System.out.print(s + " " + vV.getLabel());
 		if (sV.getLabel() == vV.getLabel()) {
 			System.out.print(sV.getLabel()+ " ");
 		} else if (vV.getParent() == null) {
-			System.out.println("No Path Exists");
+			System.out.print("No Path Exists");
 		} else {
 			printPathHelper(s, vV.getParent().getLabel());
 			System.out.print(vV.getLabel() + " ");
@@ -179,4 +207,12 @@ public class Graph implements GraphInterface {
 		return null;
 	}
 	
+	private Edge getEdge(Vertex start, Vertex end) {
+		for (Edge e : edges) {
+			if (e.getStart().getLabel() == start.getLabel() && e.getEnd().getLabel() == end.getLabel()) {
+				return e;
+			}
+		}
+		return null;
+	}
 }

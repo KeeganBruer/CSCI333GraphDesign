@@ -8,15 +8,15 @@ public class Main {
 		graph.insertVertex(3);
 		graph.insertVertex(4);
 		graph.insertVertex(5);
-		graph.insertUndirectedEdge(0, 1);
-		graph.insertUndirectedEdge(2, 1);
-		graph.insertUndirectedEdge(2, 3);
-		graph.insertUndirectedEdge(0, 3);
-		graph.insertUndirectedEdge(3, 4);
-		graph.insertUndirectedEdge(4, 5);
-		graph.insertUndirectedEdge(1, 5);
+		graph.insertUndirectedWeightedEdge(0, 1, 3);
+		graph.insertUndirectedWeightedEdge(2, 1, 0);
+		graph.insertUndirectedWeightedEdge(2, 3, 4);
+		graph.insertUndirectedWeightedEdge(0, 3, 9);
+		graph.insertUndirectedWeightedEdge(3, 4, 3);
+		graph.insertUndirectedWeightedEdge(4, 5, 7);
+		graph.insertUndirectedWeightedEdge(1, 5, 2);
 		graph.printGraphArray();
-		graph.DFS(0);
+		graph.MST(0);
 		graph.printPath(0, 5);
 	}
 }
