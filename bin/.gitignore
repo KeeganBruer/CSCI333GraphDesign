@@ -1,4 +1,5 @@
 /Graph.class
 /GraphInterface.class
-/Vertex.class
 /Vertex$Stage.class
+/Vertex.class
+/Edge.class

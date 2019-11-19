@@ -13,9 +13,9 @@ public class Vertex {
 	    WHITE, GREY, BLACK; 
 	}
 	private ArrayList<Vertex> neighbors = new ArrayList<Vertex>();
-	private int label;
+	private int label, distance, key, dTime, fTime;
 	private Stage stage;
-	private int distance;
+	private Vertex parent;
 
 	public Vertex(int l) {
 		label = l;
@@ -43,19 +43,11 @@ public class Vertex {
 	}
 	
 	/**
-	 * Adds one to the stage counter of the Vertex. This records whether the Vertex has been visited
+	 * Sets the current stage of the vertex. This records whether the Vertex has been visited
 	 * before GREY or if it has been searched BLACK. Should be advanced on both visit and search.
 	 */
-	public void advanceStage() {
-		switch (stage) {
-			case WHITE:
-				stage = Stage.GREY;
-				break;
-			case GREY:
-				stage = Stage.BLACK;
-			default:
-				break;
-		}
+	public void setStage(Stage s) {
+		this.stage = s;
 	}
 	
 	/**
@@ -85,5 +77,37 @@ public class Vertex {
 	
 	public int getDistance() {
 		return distance;	
+	}
+	
+	public void setParent(Vertex p) {
+		this.parent = p;
+	}
+	
+	public Vertex getParent() {
+		return this.parent;
+	}
+	
+	public void setDTime(int d) {
+		this.dTime = d;
+	}
+	
+	public int getDTime() {
+		return this.dTime;
+	}
+	
+	public void setFTime(int f) {
+		this.fTime = f;
+	}
+	
+	public int getFTime() {
+		return this.fTime;
+	}
+	
+	public void setKey(int key) {
+		this.key = key;
+	}
+	
+	public int getKey() {
+		return this.key;
 	}
 }

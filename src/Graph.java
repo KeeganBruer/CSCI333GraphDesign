@@ -7,40 +7,72 @@ import java.util.ArrayList;
  */
 
 public class Graph implements GraphInterface {
-	
-	ArrayList<Vertex> vertices = new ArrayList<Vertex>();
-	Queue<Vertex> bfsQueue = new LinkedList<>();
-
-	public Graph() {
-		//
-	}
 
 	@Override
 	public void BFS(int startingNode) {
-		//TODO stub		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void DFS(int startingNode) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void MST(int startingNode) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public boolean insertVertex(int vertex) {
-		// TODO stub
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteVertex(int vertex) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean insertDirectedEdge(int start, int end) {
-		// TODO stub
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertDirectedWeightedEdge(int start, int end, int weight) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertUndirectedWeightedEdge(int start, int end, int weight) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean insertUndirectedEdge(int vertex1, int vertex2) {
-		return insertDirectedEdge(vertex1, vertex2) && insertDirectedEdge(vertex2, vertex1);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	@Override
 	public void printGraphArray() {
-		// TODO stub
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void printPath(int start, int end) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
